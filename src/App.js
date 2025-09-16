@@ -13,6 +13,7 @@ const App = () => {
   const [allMessagesComplete, setAllMessagesComplete] = useState(false);
   const [heartClicks, setHeartClicks] = useState(0);
   const containerRef = useRef(null);
+  const audioRef = useRef(null); // Audio reference
 
   // Custom scroll tracking with throttling
   useEffect(() => {
@@ -65,6 +66,40 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Audio setup and auto-start music
+  useEffect(() => {
+    // Initialize audio
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5; // Set volume to 50%
+      audioRef.current.loop = true; // Loop the music
+
+      // Auto-start music when website loads
+      const autoStartMusic = async () => {
+        try {
+          await audioRef.current.play();
+          setMusicPlaying(true);
+        } catch (error) {
+          console.log("Auto-play failed (browser restriction):", error);
+          // Music will need to be manually started by user
+          setMusicPlaying(false);
+        }
+      };
+
+      // Start music after welcome screen delay
+      const musicTimer = setTimeout(autoStartMusic, 1000);
+
+      return () => clearTimeout(musicTimer);
+    }
+
+    // Cleanup on unmount
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
+
   // Heart click handler
   const handleHeartClick = (event) => {
     setHeartClicks((prev) => prev + 1);
@@ -88,9 +123,25 @@ const App = () => {
     }, 2000);
   };
 
-  // Music toggle handler
-  const toggleMusic = () => {
-    setMusicPlaying(!musicPlaying);
+  // Enhanced music toggle handler
+  const toggleMusic = async () => {
+    if (!audioRef.current) return;
+
+    try {
+      if (musicPlaying) {
+        // Pause music
+        audioRef.current.pause();
+        setMusicPlaying(false);
+      } else {
+        // Play music
+        await audioRef.current.play();
+        setMusicPlaying(true);
+      }
+    } catch (error) {
+      console.log("Audio play failed:", error);
+      // Handle autoplay restrictions
+      setMusicPlaying(false);
+    }
   };
 
   // Calculate scroll progress
@@ -132,6 +183,12 @@ const App = () => {
 
   return (
     <>
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} preload="auto" style={{display: "none"}}>
+        <source src="/song.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+
       {/* Welcome Screen */}
       <AnimatePresence>
         {showWelcome && (
@@ -212,9 +269,10 @@ const App = () => {
             💖
           </motion.div>
           <span className="heart-count">{heartClicks}</span>
+          <span className="heart-label">Love Clicks</span>
         </motion.div>
 
-        {/* Music Toggle */}
+        {/* Simplified Music Toggle - Just Icons */}
         <motion.button
           className="music-toggle"
           onClick={toggleMusic}
@@ -224,6 +282,26 @@ const App = () => {
           whileHover={{scale: 1.1}}
           whileTap={{scale: 0.95}}
           aria-label={musicPlaying ? "Pause music" : "Play music"}
+          style={{
+            background: musicPlaying
+              ? "rgba(255, 107, 157, 0.9)"
+              : "rgba(255, 255, 255, 0.9)",
+            color: musicPlaying ? "#fff" : "#880e4f",
+            border: `2px solid ${
+              musicPlaying ? "#ff6b9d" : "rgba(255, 107, 157, 0.5)"
+            }`,
+            borderRadius: "50%",
+            width: "60px",
+            height: "60px",
+            fontSize: "1.5rem",
+            fontWeight: "bold",
+            cursor: "pointer",
+            boxShadow: "0 5px 20px rgba(255, 107, 157, 0.3)",
+            transition: "all 0.3s ease",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           {musicPlaying ? "⏸️" : "🎵"}
         </motion.button>
@@ -307,6 +385,7 @@ const App = () => {
               animate={{scaleX: scrollProgress}}
               style={{transformOrigin: "left"}}
             />
+            <div className="progress-label">Story Progress</div>
           </div>
 
           {/* Messages */}
