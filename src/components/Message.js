@@ -95,7 +95,7 @@ const Message = ({text, delay, index, totalMessages}) => {
     return Math.random() * 30 + 50; // 50-80ms for comfortable reading
   };
 
-  // Get chapter titles based on updated 9-chapter story
+  // Updated 10-chapter titles extracted from your messages
   const getChapterTitle = (index) => {
     const titles = [
       "The Beginning", // Chapter 1
@@ -106,23 +106,25 @@ const Message = ({text, delay, index, totalMessages}) => {
       "A Little Cheesiness", // Chapter 6
       "Gratitude", // Chapter 7
       "Our Forever", // Chapter 8
-      "The Truth That Never Changes", // Chapter 9
+      "My Conditional Promise", // Chapter 9
+      "The Truth That Never Changes", // Final Chapter
     ];
     return titles[index] || "Our Story";
   };
 
-  // Get chapter emojis
+  // Updated 10-chapter emojis extracted from your messages
   const getChapterEmoji = (index) => {
     const emojis = [
-      "🌸", // Chapter 1 - Beginning
-      "🎂", // Chapter 2 - Birthday
-      "🎓", // Chapter 3 - Studies/Dreams
-      "💔", // Chapter 4 - Mistakes
-      "🤝", // Chapter 5 - Trust
-      "😘", // Chapter 6 - Cheesy
+      "🌸", // Chapter 1 - The Beginning
+      "🎂🎉", // Chapter 2 - Your Special Day
+      "🎓✨", // Chapter 3 - Dreams & Reality
+      "💔🙏", // Chapter 4 - My Mistakes
+      "🤝❤️", // Chapter 5 - Trust & Understanding
+      "😘💕", // Chapter 6 - A Little Cheesiness
       "🌹", // Chapter 7 - Gratitude
-      "🕰️", // Chapter 8 - Forever
-      "💖", // Chapter 9 - Love
+      "🕰️❤️", // Chapter 8 - Our Forever
+      "🌈🤞", // Chapter 9 - My Conditional Promise
+      "💖", // Final Chapter - The Truth That Never Changes
     ];
     return emojis[index] || "💕";
   };
@@ -204,7 +206,10 @@ const Message = ({text, delay, index, totalMessages}) => {
           transition={{delay: 0.3, duration: 0.5}}
         >
           <span className="chapter-number">
-            Chapter {index + 1} {getChapterEmoji(index)}
+            {index === totalMessages - 1
+              ? "Final Chapter"
+              : `Chapter ${index + 1}`}{" "}
+            {getChapterEmoji(index)}
           </span>
           <span className="chapter-subtitle">{getChapterTitle(index)}</span>
         </motion.div>
@@ -247,7 +252,7 @@ const Message = ({text, delay, index, totalMessages}) => {
           )}
         </div>
 
-        {/* Story completion heart - Updated for 9 chapters */}
+        {/* Story completion heart - Updated for 10 chapters */}
         <motion.div
           className="story-heart"
           initial={{opacity: 0, scale: 0, rotate: -180}}
@@ -267,15 +272,16 @@ const Message = ({text, delay, index, totalMessages}) => {
             stiffness: 150,
           }}
         >
-          {index === 0 && "💫"}
-          {index === 1 && "🎂🎉"}
-          {index === 2 && "🏡📚"}
+          {index === 0 && "💫🌸"}
+          {index === 1 && "🎂👑"}
+          {index === 2 && "🎓🏡"}
           {index === 3 && "🙏💗"}
           {index === 4 && "💍👩‍❤️‍👨"}
           {index === 5 && "✨⏸️"}
           {index === 6 && "🤗🌍"}
           {index === 7 && "🥂📖"}
-          {index === 8 && "❤️✨"}
+          {index === 8 && "🤝✍️"}
+          {index === 9 && "❤️✨"}
         </motion.div>
 
         {/* Special decoration for final story */}

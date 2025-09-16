@@ -32,7 +32,7 @@ const App = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Updated 9-chapter love story messages for Mansi
+  // Updated 10-chapter love story messages for Mansi with chapter headers and conditional promise
   const messages = [
     "Two years ago, our story began… from strangers ➝ best friends ➝ soulmates ❤️. Every smile 😊, every silly fight 😅, and every late-night talk 🌙 has written a page in our book of love.",
 
@@ -50,9 +50,10 @@ const App = () => {
 
     "Two years is just the beginning 📖. I want thousands of chapters with you 👫 — full of laughter, adventures, and dreams. Our story is endless, and you are my forever 🥂.",
 
+    "If you accept me the way I am — my dreams, my focus, my mistakes, and my love ❤️ — then I promise you this: I will stand by you, fight for us, and never let go of your hand 🤝. Together, we will write an endless love story ✍️✨.",
+
     "At the end of every fight 😢, every dream 🌈, every tomorrow 🌞… one truth always remains the same — ✨ I Love You ❤️ ✨",
   ];
-
   // Welcome screen timer
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -399,7 +400,7 @@ const App = () => {
                     fontWeight: "500",
                   }}
                 >
-                  ✨ September 2024 ✨
+                  ✨ 17 September ✨
                 </p>
               </div>
 
