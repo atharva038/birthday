@@ -54,6 +54,7 @@ const App = () => {
 
     "At the end of every fight 😢, every dream 🌈, every tomorrow 🌞… one truth always remains the same — ✨ I Love You ❤️ ✨",
   ];
+
   // Welcome screen timer
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -254,6 +255,49 @@ const App = () => {
           >
             Forever and Always, Your Atharva ❤️
           </motion.p>
+
+          {/* Story Book Introduction */}
+          <motion.div
+            className="story-introduction"
+            initial={{opacity: 0, y: 50}}
+            animate={{opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50}}
+            transition={{delay: 2, duration: 1}}
+            style={{
+              textAlign: "center",
+              margin: "60px auto",
+              padding: "30px",
+              background: "rgba(255, 255, 255, 0.9)",
+              borderRadius: "20px",
+              border: "2px solid rgba(255, 107, 157, 0.3)",
+              maxWidth: "600px",
+              boxShadow: "0 15px 40px rgba(255, 107, 157, 0.2)",
+            }}
+          >
+            <div style={{fontSize: "3rem", marginBottom: "20px"}}>📖</div>
+            <h2
+              style={{
+                fontFamily: "'Brush Script MT', cursive",
+                fontSize: "2rem",
+                color: "#880e4f",
+                marginBottom: "15px",
+              }}
+            >
+              Our Love Story in 10 Chapters
+            </h2>
+            <p
+              style={{
+                fontFamily: "'Georgia', serif",
+                fontSize: "1.1rem",
+                color: "#555",
+                fontStyle: "italic",
+                lineHeight: "1.6",
+              }}
+            >
+              As you scroll down, my dearest Mansi, each chapter will unfold our
+              beautiful 2-year journey together. This is our love story, written
+              especially for your special day. 💕
+            </p>
+          </motion.div>
 
           {/* Progress Bar */}
           <div className="progress-container">
