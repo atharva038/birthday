@@ -1,0 +1,503 @@
+/* Storytelling Message Styles - Updated for JS Component */
+.story-message {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 40px 50px;
+  margin: 60px auto;
+  max-width: 800px;
+  /* FIXED: Consistent shadow format */
+  box-shadow: 0px 20px 60px 0px rgba(255, 107, 157, 0.15);
+  border: 2px solid rgba(255, 182, 193, 0.3);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced shimmer effect */
+.story-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.8s ease;
+  z-index: 1;
+}
+
+.story-message:hover::before {
+  left: 100%;
+}
+
+/* Story message visibility states */
+.story-message.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.story-message.typing-complete {
+  /* FIXED: Consistent shadow format */
+  box-shadow: 0px 25px 70px 0px rgba(136, 14, 79, 0.25);
+  border-color: rgba(136, 14, 79, 0.4);
+}
+
+/* Story content container */
+.story-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Story chapter indicator */
+.story-chapter {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #880e4f;
+}
+
+.chapter-number {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #880e4f;
+  text-shadow: 0 2px 4px rgba(136, 14, 79, 0.3);
+}
+
+.chapter-subtitle {
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #ad1457;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Story opening decoration */
+.story-opening {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.6));
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Story text container */
+.story-text-container {
+  position: relative;
+  margin: 30px 0;
+  text-align: center;
+  min-height: 3rem;
+  padding: 20px 0;
+}
+
+/* Quote marks */
+.story-quote-mark {
+  font-family: 'Georgia', serif;
+  font-size: 4rem;
+  color: rgba(255, 107, 157, 0.4);
+  font-weight: bold;
+  position: absolute;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.story-quote-mark.opening {
+  top: -20px;
+  left: -10px;
+}
+
+.story-quote-mark.closing {
+  bottom: -40px;
+  right: -10px;
+  transform: rotate(180deg);
+}
+
+/* Main story text */
+.story-text {
+  font-family: 'Georgia', serif;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: #2c1810;
+  font-weight: 500;
+  text-align: center;
+  display: inline-block;
+  max-width: 90%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Story typing cursor */
+.story-cursor {
+  font-size: 1.6rem;
+  color: #ff6b9d;
+  font-weight: bold;
+  margin-left: 3px;
+  display: inline-block;
+  text-shadow: 0 0 8px rgba(255, 107, 157, 0.8);
+}
+
+/* Story completion heart */
+.story-heart {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 25px;
+  filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.5));
+  animation: heartPulse 2s ease-in-out infinite;
+}
+
+/* Story finale section */
+.story-finale {
+  text-align: center;
+  margin-top: 30px;
+  padding: 25px;
+  background: linear-gradient(45deg, rgba(255, 107, 157, 0.1), rgba(255, 182, 193, 0.1));
+  border-radius: 20px;
+  border: 2px solid rgba(255, 107, 157, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.finale-text {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2rem;
+  color: #880e4f;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 6px rgba(136, 14, 79, 0.3);
+}
+
+.finale-hearts {
+  font-size: 2.5rem;
+  animation: heartPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(255, 107, 157, 0.6));
+}
+
+/* Story background glow */
+.story-background-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255, 182, 193, 0.1), transparent);
+  animation: rotate 8s linear infinite;
+  z-index: 1;
+  border-radius: 25px;
+}
+
+/* Story sparkle effects */
+.story-sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  pointer-events: none;
+  z-index: 3;
+  filter: drop-shadow(0 0 8px rgba(255, 182, 193, 0.6));
+}
+
+.story-sparkle-1 {
+  top: 20px;
+  right: 30px;
+}
+
+.story-sparkle-2 {
+  bottom: 20px;
+  left: 30px;
+}
+
+/* Special styles for first story */
+.first-story {
+  border: 3px solid rgba(255, 107, 157, 0.5);
+  /* FIXED: Consistent shadow format */
+  box-shadow: 0px 25px 70px 0px rgba(255, 107, 157, 0.2);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.first-story .story-content {
+  padding-top: 10px;
+}
+
+/* Special styles for final story */
+.final-story {
+  border: 3px solid rgba(136, 14, 79, 0.5);
+  /* FIXED: Consistent shadow format */
+  box-shadow: 0px 25px 70px 0px rgba(136, 14, 79, 0.25);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.final-story .story-content {
+  padding-bottom: 10px;
+}
+
+/* Container for story messages */
+.story-messages-container {
+  margin: 40px 0;
+  padding: 20px 0;
+}
+
+/* Enhanced hover effects for story messages */
+.story-message:hover {
+  transform: translateY(-8px);
+  /* FIXED: Consistent shadow format */
+  box-shadow: 0px 30px 80px 0px rgba(136, 14, 79, 0.3);
+  border-color: rgba(136, 14, 79, 0.6);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.story-message:hover .story-text {
+  color: #1a0e08;
+  text-shadow: 0 2px 5px rgba(255, 255, 255, 0.7);
+}
+
+.story-message:hover .chapter-number {
+  transform: scale(1.05);
+  text-shadow: 0 3px 8px rgba(136, 14, 79, 0.5);
+}
+
+/* Animations */
+@keyframes heartPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.5));
+  }
+  50% { 
+    transform: scale(1.1); 
+    filter: drop-shadow(0 0 25px rgba(255, 107, 157, 0.8));
+  }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) scale(1); 
+    filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.6));
+  }
+  50% { 
+    transform: translateY(-8px) scale(1.05); 
+    filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.8));
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .story-message {
+    padding: 30px 25px;
+    margin: 40px 15px;
+    max-width: 95%;
+  }
+  
+  .story-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  .chapter-number {
+    font-size: 1.5rem;
+  }
+  
+  .chapter-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .story-quote-mark {
+    font-size: 3rem;
+  }
+  
+  .story-quote-mark.opening {
+    top: -15px;
+    left: -5px;
+  }
+  
+  .story-quote-mark.closing {
+    bottom: -30px;
+    right: -5px;
+  }
+  
+  .story-opening {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .story-heart {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+  
+  .finale-text {
+    font-size: 1.6rem;
+  }
+  
+  .finale-hearts {
+    font-size: 2rem;
+  }
+  
+  .story-cursor {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-message {
+    padding: 20px 15px;
+    margin: 30px 10px;
+    max-width: 98%;
+  }
+  
+  .story-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+  
+  .chapter-number {
+    font-size: 1.3rem;
+  }
+  
+  .chapter-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .story-quote-mark {
+    font-size: 2.5rem;
+  }
+  
+  .story-opening {
+    font-size: 1.8rem;
+  }
+  
+  .story-heart {
+    font-size: 1.8rem;
+  }
+  
+  .finale-text {
+    font-size: 1.4rem;
+  }
+  
+  .finale-hearts {
+    font-size: 1.8rem;
+  }
+  
+  .story-sparkle {
+    font-size: 1.2rem;
+  }
+  
+  .story-cursor {
+    font-size: 1.2rem;
+  }
+}
+
+/* Better text selection */
+.story-text {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+/* Ensure text doesn't overflow */
+.story-content * {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .story-heart,
+  .story-opening,
+  .finale-hearts,
+  .story-sparkle {
+    animation: none;
+  }
+  
+  .story-cursor {
+    animation: simpleBlink 1s step-end infinite;
+  }
+  
+  .story-background-glow {
+    animation: none;
+  }
+  
+  @keyframes simpleBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+}
+
+/* Focus states for accessibility */
+.story-message:focus-within {
+  outline: 2px solid rgba(136, 14, 79, 0.6);
+  outline-offset: 3px;
+}
+
+/* Smooth scrolling behavior */
+.story-message {
+  scroll-margin-top: 100px;
+}
+
+/* Enhanced contrast for better readability */
+.story-text {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Print styles */
+@media print {
+  .story-message {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .story-sparkle,
+  .story-background-glow {
+    display: none !important;
+  }
+  
+  .story-text {
+    color: black !important;
+    font-size: 12pt !important;
+  }
+}
+
+/* Add floating heart animation for click effects */
+@keyframes heartFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5);
+  }
+}
+
+.floating-click-heart {
+  animation: heartFloat 2s ease-out forwards;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Add cursor blinking animation */
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.story-cursor {
+  animation: cursorBlink 1s infinite;
+}

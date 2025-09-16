@@ -1,0 +1,42 @@
+.floating-hearts {
+  position: fixed !important; /* Force fixed positioning */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+.floating-hearts .heart {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+.floating-hearts .sparkle {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.floating-hearts .petal {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Ensure no scroll interference */
+.floating-hearts * {
+  position: absolute !important;
+  transform-style: preserve-3d;
+}
